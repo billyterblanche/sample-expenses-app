@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-card-content>
+        <h1>Welcome back {{currentUser.username}}!</h1>
+        <h2>Submitted expenses:</h2>
+        <div class="container text-center">
+            <button mat-button (click)="openDialog('Add', null)" mat-flat-button color="primary" class="margin-bottom10">Add Expense</button>
+
+            <mat-table *ngIf="expenses.length > 0; else elseTemplate" [dataSource]="dataSource" #expensestable class="expenses-table mat-elevation-z8">
+                <ng-container matColumnDef="description">
+                    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="value">
+                    <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="VAT">
+                    <mat-header-cell *matHeaderCellDef> VAT </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.VAT}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.dateOfExpense}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="edit-action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element" class="edit-action-link">
+                      <a mat-stroked-button (click)="openDialog('Update', element)">Edit</a>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="delete-action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element" class="delete-action-link">
+                      <a mat-stroked-button (click)="openDialog('Delete', element)">Delete</a>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <ng-template #elseTemplate>
+              <label>No expenses have been captured yet.</label>
+            </ng-template>
+        </div>
+    </mat-card-content>
+</mat-card>

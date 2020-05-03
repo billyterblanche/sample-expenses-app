@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="dialogForm" (ngSubmit)="onSubmit()">
+      <h1><strong>{{localAction}}</strong></h1>
+      <div *ngIf="localAction != 'Delete'; else elseTemplate">
+        <mat-form-field>
+          <input placeholder="Description" matInput formControlName="description" required>
+          <mat-error *ngIf="f.description.errors?.required">
+            Description is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input placeholder="Value" matInput formControlName="value" type="number" (ngModelChange)="updateVATValue()" required>
+          <mat-error *ngIf="f.value.errors?.required">
+            Value is required
+          </mat-error>
+          <mat-error *ngIf="f.value.errors?.min">
+            Value should be greater than zero
+          </mat-error>
+        </mat-form-field>
+        <!-- User story 4: -->
+        <mat-form-field>
+          <input placeholder="VAT" matInput formControlName="VATValue" type="number" readonly>
+        </mat-form-field>
+        <!-- User story 4: -->
+        <mat-form-field>
+          <input placeholder="Date" matInput formControlName="dateOfExpense" type="date" required>
+          <mat-error *ngIf="f.dateOfExpense.errors?.required">
+            Date is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <ng-template #elseTemplate>
+        <label>Are you sure you want to delete <b>{{localData.description}}</b>?</label>
+      </ng-template>
+      <button [disabled]="loading" mat-raised-button color="primary">{{localAction}}</button>
+      <button (click)="closeDialog();" mat-stroked-button>Cancel</button>
+    </form>
+  </mat-card-content>
+</mat-card>
