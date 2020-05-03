@@ -20,7 +20,7 @@ module.exports.register = (req, res) => {
           token: token
         });
       } else {
-        res.status(401)
+        res.status(403)
         .json({ message: 'We could not find an entry with the details supplied.' });
       }
     });

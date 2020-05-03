@@ -36,6 +36,7 @@ class User {
 
         if (result.length == 0) {
           callback.call(this, null);
+          return;
         }
 
         var entry = result[0];
@@ -43,6 +44,7 @@ class User {
         this.hash = entry.password_hash;
         if (!this.validPassword(password)) {
           callback.call(this, null);
+          return;
         }
 
         this.id = entry.id;
