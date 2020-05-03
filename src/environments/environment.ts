@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   minPasswordLength: 6,
   baseUrl: 'http://localhost:4200',
-  userMockServer: true
+  userMockServer: false
 };
 
 /*
