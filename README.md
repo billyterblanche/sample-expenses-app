@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation
 
-1. Clone the repository: `git clone git@github.com:...todo`
+1. Clone the repository: `git clone https://github.com/billyterblanche/sample-expenses-app`
 2. Change into root directory: cd expenses-app
 3. Run: `npm install`
 4. Make sure MySQL is running
